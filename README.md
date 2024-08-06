@@ -1,10 +1,10 @@
 # Vanity Address Utility
 
-This tool helps you find the right "salt" to create a smart contract with a vanity address—an address that looks special or unique. By using a factory address and its bytecode, you can brute-force the salt needed to determine the vanity address before the contract is even deployed.
+This tool helps you find the right "salt" to deploy a smart contract on any EVM blockchain with a vanity address—an address that looks special or unique. By using a factory address and its bytecode, you can brute-force the salt needed to determine the vanity address before the contract is even deployed.
 
 Interestingly, you can send ETH or tokens to a contract address before it’s deployed and then withdraw them once the deployment is complete.
 
-This utility is written in TypeScript, so you can run it using Node.js. It requires the Ether.js library as a dependency.
+This utility is written in TypeScript, so you can run it using Node.js. It requires the Ethers.js library as a dependency.
 
 ## How to Run the Script
 
