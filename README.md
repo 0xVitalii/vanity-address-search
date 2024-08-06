@@ -1,8 +1,8 @@
 # Vanity Address Utility
 
-This utility is designed for brute-forcing the appropriate salt needed to deploy a smart contract with a vanity address. Given a factory address and its bytecode, you can determine the required salt to compute a vanity address in advance.
+This tool helps you find the right "salt" to create a smart contract with a vanity address—an address that looks special or unique. By using a factory address and its bytecode, you can brute-force the salt needed to determine the vanity address before the contract is even deployed.
 
-Notably, it is possible to send ETH or tokens to a contract address before deployment and withdraw them after deployment.
+Interestingly, you can send ETH or tokens to a contract address before it’s deployed and then withdraw them once the deployment is complete.
 
 This utility is written in TypeScript, so you can run it using Node.js. It requires the Ether.js library as a dependency.
 
@@ -10,7 +10,7 @@ This utility is written in TypeScript, so you can run it using Node.js. It requi
 
 1. **Deploy a Factory Smart Contract**
 
-   First, deploy your own factory smart contract and obtain its address and bytecode. You can set the `factoryContract` and `factoryByteCode` variables using the obtained values. The bytecode can be retrieved by calling the `getBytecode(address _sender)` function from the factory smart contract:
+   First, deploy your own factory smart contract and obtain its address and bytecode. You will need to set the `factoryContract` and `factoryByteCode` variables in index.ts using the obtained values. The bytecode can be retrieved by calling the `getBytecode(address _sender)` function from the factory smart contract:
 
    ```solidity
    pragma solidity ^0.8.20;
@@ -60,15 +60,16 @@ This utility is written in TypeScript, so you can run it using Node.js. It requi
    }
    ```
 
-2. **Configure Vanity Address Requirements**
-
-   Modify the `startsWith('0x00000')` function with the desired prefix for your vanity address. The more characters you specify, the longer the computation will take. Five characters can be brute-forced relatively easily, while six or more may require hours or days to find the correct salt.
-
-   You can refer to a factory contract I deployed as an example: [Factory Contract on Etherscan](https://optimistic.etherscan.io/address/0xfe0417c2e1ed375ea1baec576fce266555a1de23).
+    You can refer to a factory contract I deployed as an example: [Factory Contract on Etherscan](https://optimistic.etherscan.io/address/0xfe0417c2e1ed375ea1baec576fce266555a1de23).
 
    Here is an example of a deployed smart contract with a vanity address starting with zeros: [Vanity Address Contract on Etherscan](https://optimistic.etherscan.io/address/0x00000f15b579291901007124d3605f11b46e2fbf).
 
    I personally deployed an ERC-20 token, but you are free to replace the ERC-20 token code in the factory smart contract with any other contract.
+
+
+2. **Configure Vanity Address Requirements**
+
+   Modify the `startsWith('0x00000')` function in index.ts with the desired prefix for your vanity address. The more characters you specify, the longer the computation will take. Five characters can be brute-forced relatively easily, while six or more may require hours or days to find the correct salt.
 
 3. **Run the Script**
 
@@ -83,6 +84,3 @@ This utility is written in TypeScript, so you can run it using Node.js. It requi
 - [CREATE2 on Solidity By Example](https://solidity-by-example.org/app/create2/)
 - [CREATE2 YouTube Video](https://www.youtube.com/watch?v=-XT2YCQGVEQ)
 - [Compute Contract Address Before Deployment YouTube Guide](https://www.youtube.com/watch?v=883-koWrsO4)
-```
-
-Feel free to copy this and use it in your GitHub repository. Let me know if there's anything else you need!
